@@ -13,7 +13,7 @@ class Role(models.Model):
     """
     create a employee roles/positions
     """
-    name = models.CharField(max_length=100, blank=True)
+    name = models.CharField(max_length=100, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

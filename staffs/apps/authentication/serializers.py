@@ -3,7 +3,7 @@ from rest_framework import serializers, status
 from rest_framework.exceptions import AuthenticationFailed
 
 # local imports
-from staffs.apps.authentication.models import User
+from staffs.apps.authentication.models import User, Role
 
 
 class LoginSerializer(serializers.Serializer):
@@ -65,3 +65,13 @@ class AddUserSerializer(serializers.ModelSerializer):
         # Use the `create_user` create a new user.
         validated_data.pop('confirm_password', None)
         return User.objects.create_user(**validated_data)
+
+
+class RoleSerializer(serializers.ModelSerializer):
+    """
+    Serializer to validate role details
+    """
+    class Meta:
+        model = Role
+        fields = ['name', 'created_at', 'updated_at']
+        read_only_fields = ('created_at', 'updated_at')

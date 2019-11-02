@@ -1,11 +1,12 @@
 from rest_framework import status
+from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAdminUser
 
 # local imports
 from staffs.apps.authentication.serializers import (AddUserSerializer,
-                                                    LoginSerializer)
+                                                    LoginSerializer,
+                                                    RoleSerializer)
 
 
 class LoginUserAPIView(APIView):
@@ -25,6 +26,7 @@ class LoginUserAPIView(APIView):
 
         return Response(response, status=status.HTTP_200_OK)
 
+
 class AddUserAPIView(APIView):
     '''
     Handles adding/registering new employees
@@ -42,4 +44,24 @@ class AddUserAPIView(APIView):
             'user_data': serializer.data
         }
 
-        return Response(response, status=status.HTTP_200_OK)
+        return Response(response, status=status.HTTP_201_CREATED)
+
+
+class RoleAPIView(APIView):
+    '''
+    Handles adding/registering new employees
+    '''
+    serializer_class = RoleSerializer
+    permission_classes = (IsAdminUser, )
+
+    def post(self, request):
+        role = request.data
+        serializer = self.serializer_class(data=role)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        response = {
+            'message': 'Role added successfully.',
+            'user_data': serializer.data
+        }
+
+        return Response(response, status=status.HTTP_201_CREATED)
