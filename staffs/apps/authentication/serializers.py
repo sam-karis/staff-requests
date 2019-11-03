@@ -58,7 +58,8 @@ class AddUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['username', 'email', 'first_name', 'last_name',
-                  'created_at', 'updated_at', 'password', 'confirm_password']
+                  'line_manager', 'role', 'created_at', 'updated_at',
+                  'password', 'confirm_password']
         read_only_fields = ('created_at', 'updated_at')
 
     def create(self, validated_data):
