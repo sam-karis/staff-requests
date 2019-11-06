@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Staff Requests</title>
+  </head>
+  <body>
+        <h4><b>Hello {{ username }}</b>,</h4>
+        <p>
+            This is to notify you that your <b>{{ request_name }}</b> expense request
+            for KSH <b>{{ request_amount }}</b> has been {{request_status}}</br>
+        </p>
+        {% if request_status == 'approved' %}
+            <p> 
+                Please collect the money from finance department in 2 days.
+            </p>
+        {% else %}
+            <p> 
+                For more information contact your manager.
+            </p>
+        {% endif %}
+        <p> 
+            Thank you 
+        </p>
+        <p>Regards,</p>
+        <p><h3>Budget Team</h3></p>
+  </body>
+</html>
