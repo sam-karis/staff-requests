@@ -61,7 +61,7 @@ class RoleAPIView(APIView):
         serializer.save()
         response = {
             'message': 'Role added successfully.',
-            'user_data': serializer.data
+            'role_data': serializer.data
         }
 
         return Response(response, status=status.HTTP_201_CREATED)
