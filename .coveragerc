@@ -1,0 +1,13 @@
+# .coveragerc
+[run]
+omit =
+    *__init__*
+    tests
+
+[report]
+show_missing = True
+omit =
+    */python?.?/*
+
+[html]
+directory=html_coverage_report
